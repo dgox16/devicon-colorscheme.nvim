@@ -18,7 +18,6 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
-    config = true
 }
 ```
 
