@@ -1,7 +1,13 @@
 local M = {}
 
 function M.get_highlights()
-    local highlightsDevIcon = {}
+    local highlightsDevIcon = {
+        "DevIconPyc",
+        "DevIconPyd",
+        "DevIconPyo",
+        "DevIconSvg",
+        "DevIconCjs",
+    }
 
     local highlights = {}
     for _, icon in ipairs(highlightsDevIcon) do

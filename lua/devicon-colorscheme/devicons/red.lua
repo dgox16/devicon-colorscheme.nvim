@@ -5,6 +5,8 @@ function M.get_highlights()
         "DevIconGitIgnore",
         "DevIconPackageLockJson",
         "DevIconToml",
+        "DevIconSvelte",
+        "DevIconSvelteConfig",
     }
 
     local highlights = {}

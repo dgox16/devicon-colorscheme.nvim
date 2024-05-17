@@ -3,9 +3,12 @@ local M = {}
 function M.get_highlights()
     local highlightsDevIcon = {
         "DeviconMd",
+        "DeviconYml",
+        "DeviconYaml",
         "DeviconConf",
         "DeviconConfig",
         "DeviconDefault",
+        "DevIconTrueTypeFont",
     }
 
     local highlights = {}
