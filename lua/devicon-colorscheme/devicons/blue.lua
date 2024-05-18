@@ -6,6 +6,8 @@ function M.get_highlights()
         "DevIconTypeScript",
         "DevIconTSConfig",
         "DevIconCss",
+        "DevIconC",
+        "DevIconGo",
     }
 
     local highlights = {}

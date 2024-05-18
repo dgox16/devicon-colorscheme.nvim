@@ -12,6 +12,7 @@ function M.get_highlights()
         "DevIconJsonc",
         "DevIconEnv",
         "DevIconTypeScriptDeclaration",
+        "DevIconLicense",
     }
 
     local highlights = {}

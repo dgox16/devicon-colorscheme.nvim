@@ -5,6 +5,7 @@ function M.get_highlights()
         "DevIconGitIgnore",
         "DevIconPackageLockJson",
         "DevIconToml",
+        "DevIconJava",
         "DevIconSvelte",
         "DevIconSvelteConfig",
     }

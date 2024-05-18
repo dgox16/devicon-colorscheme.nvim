@@ -2,6 +2,9 @@ local M = {}
 
 function M.get_highlights()
     local highlightsDevIcon = {
+        "DevIconSql",
+        "DevIconLog",
+        "DevIconLock",
         "DeviconMd",
         "DeviconYml",
         "DeviconYaml",

@@ -3,6 +3,9 @@ local M = {}
 function M.get_highlights()
     local highlightsDevIcon = {
         "DevIconHtml",
+        "DevIconMp4",
+        "DevIconRs",
+        "DevIconXml",
     }
 
     local highlights = {}

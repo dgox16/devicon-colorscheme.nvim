@@ -27,7 +27,6 @@ function M.setup()
         DevIconColorschemeBrightRed = { fg = config.colors.bright_red },
         DevIconColorschemeBrightYellow = { fg = config.colors.bright_yellow },
     }
-
     load_highlights(highlightsColorscheme)
 
     local colors = require("devicon-colorscheme.config").get_colors()

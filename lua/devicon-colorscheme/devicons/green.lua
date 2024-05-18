@@ -7,7 +7,9 @@ function M.get_highlights()
         "DevIconZshenv",
         "DevIconZshprofile",
         "DevIconZshrc",
+        "DevIconTex",
         "DevIconCsv",
+        "DevIconVim",
     }
 
     local highlights = {}
