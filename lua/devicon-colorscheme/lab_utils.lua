@@ -108,6 +108,74 @@ function M.color_distance(color1, color2, bias)
 	return math.sqrt(dl * dl + da * da + db * db)
 end
 
+--- Computes the CIEDE2000 color difference between two colors.
+--- @param lab1 table: LAB values of the first color.
+--- @param lab2 table: LAB values of the second color.
+--- @return number: CIEDE2000 color difference between the two colors.
+function M.ciede2000(lab1, lab2)
+	local L1, a1, b1 = lab1[1], lab1[2], lab1[3]
+	local L2, a2, b2 = lab2[1], lab2[2], lab2[3]
+
+	local C1 = math.sqrt(a1 * a1 + b1 * b1)
+	local C2 = math.sqrt(a2 * a2 + b2 * b2)
+	local C_avg = (C1 + C2) / 2
+
+	local G = 0.5 * (1 - math.sqrt((C_avg ^ 7) / (C_avg ^ 7 + 25 ^ 7)))
+	local a1_prime = (1 + G) * a1
+	local a2_prime = (1 + G) * a2
+
+	local C1_prime = math.sqrt(a1_prime * a1_prime + b1 * b1)
+	local C2_prime = math.sqrt(a2_prime * a2_prime + b2 * b2)
+
+	local h1_prime = math.atan2(b1, a1_prime)
+	local h2_prime = math.atan2(b2, a2_prime)
+	if h1_prime < 0 then
+		h1_prime = h1_prime + 2 * math.pi
+	end
+	if h2_prime < 0 then
+		h2_prime = h2_prime + 2 * math.pi
+	end
+
+	local delta_L_prime = L2 - L1
+	local delta_C_prime = C2_prime - C1_prime
+	local delta_h_prime = h2_prime - h1_prime
+	if delta_h_prime > math.pi then
+		delta_h_prime = delta_h_prime - 2 * math.pi
+	elseif delta_h_prime < -math.pi then
+		delta_h_prime = delta_h_prime + 2 * math.pi
+	end
+
+	local delta_H_prime = 2 * math.sqrt(C1_prime * C2_prime) * math.sin(delta_h_prime / 2)
+
+	local L_prime_avg = (L1 + L2) / 2
+	local C_prime_avg = (C1_prime + C2_prime) / 2
+	local h_prime_avg = (h1_prime + h2_prime) / 2
+	if math.abs(h1_prime - h2_prime) > math.pi then
+		h_prime_avg = (h1_prime + h2_prime + 2 * math.pi) / 2
+	end
+
+	local T = 1
+		- 0.17 * math.cos(h_prime_avg - math.rad(30))
+		+ 0.24 * math.cos(2 * h_prime_avg)
+		+ 0.32 * math.cos(3 * h_prime_avg + math.rad(6))
+		- 0.20 * math.cos(4 * h_prime_avg - math.rad(63))
+	local delta_theta = math.rad(30) * math.exp(-((h_prime_avg - math.rad(275)) / math.rad(25)) ^ 2)
+	local R_C = 2 * math.sqrt((C_prime_avg ^ 7) / (C_prime_avg ^ 7 + 25 ^ 7))
+	local S_L = 1 + ((0.015 * (L_prime_avg - 50) ^ 2) / math.sqrt(20 + (L_prime_avg - 50) ^ 2))
+	local S_C = 1 + 0.045 * C_prime_avg
+	local S_H = 1 + 0.015 * C_prime_avg * T
+	local R_T = -math.sin(2 * delta_theta) * R_C
+
+	local delta_E = math.sqrt(
+		(delta_L_prime / S_L) ^ 2
+			+ (delta_C_prime / S_C) ^ 2
+			+ (delta_H_prime / S_H) ^ 2
+			+ R_T * (delta_C_prime / S_C) * (delta_H_prime / S_H)
+	)
+
+	return delta_E
+end
+
 --- Converts RGB color values to hexadecimal.
 --- @param rgb table: RGB values of the color.
 --- @return string: Hexadecimal value of the color.
@@ -132,7 +200,7 @@ function M.get_nearest_color(color, colors_table, bias)
 	for _, value in pairs(colors_table) do
 		local rgb_value = M.hex_to_rgb(value)
 
-		local distance = M.color_distance(rgb_value, rgb_color, bias)
+		local distance = M.ciede2000(rgb_color, rgb_value)
 
 		if distance < nearest_distance then
 			nearest_color = value

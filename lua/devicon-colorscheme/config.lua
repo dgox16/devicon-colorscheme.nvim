@@ -32,21 +32,12 @@ function config.setup(opts)
 		return
 	end
 
-	for k, v in pairs(opts) do
-		if k == "colors" then
-			for key, color in pairs(v) do
-				if default_config.colors[key] ~= nil then
-					default_config.colors[key] = color
-				end
-			end
-		end
-		if k == "bias" then
-			for key, bias in pairs(v) do
-				if default_config.bias[key] ~= nil then
-					default_config.bias[key] = bias
-				end
-			end
-		end
+	if opts.colors ~= nil then
+		default_config.colors = opts.colors
+	end
+
+	if opts.bias ~= nil then
+		default_config.bias = opts.bias
 	end
 
 	local devicons = require("nvim-web-devicons").get_icons()
