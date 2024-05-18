@@ -20,6 +20,11 @@ local default_config = {
 		bright_red = "#ff0000",
 		bright_yellow = "#ffff00",
 	},
+	bias = {
+		10, -- gives more weight to hue
+		1,
+		1,
+	},
 }
 
 function config.setup(opts)
@@ -35,19 +40,20 @@ function config.setup(opts)
 				end
 			end
 		end
+		if k == "bias" then
+			for key, bias in pairs(v) do
+				if default_config.bias[key] ~= nil then
+					default_config.bias[key] = bias
+				end
+			end
+		end
 	end
 
 	local devicons = require("nvim-web-devicons").get_icons()
 	local hsl_utils = require("devicon-colorscheme.hsl_utils")
 
-	local bias = {
-		10, -- gives more weight to hue
-		1,
-		1,
-	}
-
 	for key_icon, icon_object in pairs(devicons) do
-		local nearest_color = hsl_utils.get_nearest_color(icon_object.color, default_config.colors, bias)
+		local nearest_color = hsl_utils.get_nearest_color(icon_object.color, default_config.colors, default_config.bias)
 
 		require("nvim-web-devicons").set_icon({
 			[key_icon] = {
