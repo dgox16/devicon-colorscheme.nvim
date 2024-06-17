@@ -7,6 +7,7 @@ function M.get_highlights()
         "DevIconZshenv",
         "DevIconZshprofile",
         "DevIconZshrc",
+        "DevIconBash",
         "DevIconTex",
         "DevIconCsv",
         "DevIconVim",
