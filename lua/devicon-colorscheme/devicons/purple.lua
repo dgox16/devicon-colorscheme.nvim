@@ -7,6 +7,7 @@ function M.get_highlights()
         "DevIconJpg",
         "DevIconJpeg",
         "DevIconAvif",
+        "DevIconWebp",
     }
 
     local highlights = {}

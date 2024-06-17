@@ -8,6 +8,9 @@ function M.get_highlights()
         "DevIconCss",
         "DevIconC",
         "DevIconGo",
+        "DevIconFreeLosslessAudioCodec",
+        "DevIconMPEG4",
+        "DevIconMPEGAudioLayerIII",
     }
 
     local highlights = {}

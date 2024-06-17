@@ -13,6 +13,8 @@ function M.get_highlights()
         "DeviconDefault",
         "DevIconTrueTypeFont",
         "DevIconSh",
+        "DevIconIso",
+        "DevIconIni",
     }
 
     local highlights = {}
