@@ -8,6 +8,8 @@ function M.get_highlights()
         "DevIconJava",
         "DevIconSvelte",
         "DevIconSvelteConfig",
+        "DevIconNPMrc",
+        "DevIconNPMIgnore",
     }
 
     local highlights = {}

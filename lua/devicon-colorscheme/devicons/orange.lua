@@ -6,6 +6,7 @@ function M.get_highlights()
         "DevIconMp4",
         "DevIconRs",
         "DevIconXml",
+        "DevIconBackup",
     }
 
     local highlights = {}

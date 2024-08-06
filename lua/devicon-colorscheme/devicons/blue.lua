@@ -11,6 +11,7 @@ function M.get_highlights()
         "DevIconFreeLosslessAudioCodec",
         "DevIconMPEG4",
         "DevIconMPEGAudioLayerIII",
+        "DevIconDockerfile",
     }
 
     local highlights = {}

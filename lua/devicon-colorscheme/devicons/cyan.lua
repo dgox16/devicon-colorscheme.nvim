@@ -4,6 +4,8 @@ function M.get_highlights()
     local highlightsDevIcon = {
         "DevIconCpp",
         "DevIconHyprland",
+        "DevIconHypridle",
+        "DevIconHyprlock",
     }
 
     local highlights = {}
