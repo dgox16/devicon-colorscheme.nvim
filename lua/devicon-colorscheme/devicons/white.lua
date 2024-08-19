@@ -6,6 +6,7 @@ function M.get_highlights()
         "DevIconLog",
         "DevIconLock",
         "DeviconMd",
+        "DevIconMdx",
         "DeviconYml",
         "DeviconYaml",
         "DeviconConf",
