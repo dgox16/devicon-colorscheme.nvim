@@ -4,6 +4,7 @@ function M.get_highlights()
     local highlightsDevIcon = {
         "DevIconLua",
         "DevIconTypeScript",
+        "DevIconTsx",
         "DevIconTSConfig",
         "DevIconCss",
         "DevIconC",
