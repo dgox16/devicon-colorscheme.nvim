@@ -3,12 +3,14 @@ local M = {}
 function M.get_highlights()
     local highlightsDevIcon = {
         "DevIconGitIgnore",
+        "DevIconGitAttributes",
         "DevIconPackageLockJson",
         "DevIconToml",
         "DevIconJava",
         "DevIconSvelte",
         "DevIconSvelteConfig",
         "DevIconNPMrc",
+        "DevIconBlade",
         "DevIconNPMIgnore",
     }
 
